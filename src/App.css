@@ -2,6 +2,28 @@
   text-align: center;
 }
 
+.user-name {
+  margin-left: 10px;
+}
+
+.user-form {
+  padding: 15px;
+  border: 1px solid;
+  margin-bottom: 24px;
+}
+
+.user-form input {
+  margin-right: 10px;
+}
+
+li.user-list-item {
+  margin-bottom: 10px;
+}
+
+li.user-list-item span {
+  margin-right: 10px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

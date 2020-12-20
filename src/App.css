@@ -54,6 +54,11 @@ li.user-list-item span {
   padding: 20px;
 }
 
+.author-fixed {
+  position: fixed;
+  top: 20px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

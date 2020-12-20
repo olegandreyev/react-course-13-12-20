@@ -16,7 +16,11 @@ export default class ProductRow extends Component {
       this.setState({ editMode: false })
     };
 
-    render() {
+    componentWillUnmount() {
+      alert('I\'m removed' + this.props.product.name)
+    }
+
+  render() {
         const { product, onRemoveProduct } = this.props;
         const { editMode } = this.state;
         if (editMode) return <ProductFormRow onSubmit={this.onEdit} onCancel={this.onCancel} product={product} />

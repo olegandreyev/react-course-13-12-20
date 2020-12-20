@@ -50,6 +50,10 @@ li.user-list-item span {
   color: #61dafb;
 }
 
+.week1 {
+  padding: 20px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

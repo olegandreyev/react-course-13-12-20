@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Feed } from "semantic-ui-react";
+import Comments from "./Comments";
 
 class PostItem extends Component {
+  state = {
+    areCommentsDisplayed: false
+  };
+
   render() {
     const { post, onClick } = this.props;
+    const { areCommentsDisplayed } = this.state;
     return (
       <Feed>
         <Feed.Event>
@@ -16,6 +22,15 @@ class PostItem extends Component {
             </Feed.Summary>
             <Feed.Extra text>
               {post.body}
+            </Feed.Extra>
+            <Feed.Extra>
+              <a
+                onClick={() => this.setState({ areCommentsDisplayed: !areCommentsDisplayed })}>
+                {areCommentsDisplayed ? 'Hide Comments' : 'Show Comments'}
+              </a>
+            </Feed.Extra>
+            <Feed.Extra>
+              {areCommentsDisplayed && <Comments postId={post.id} /> }
             </Feed.Extra>
           </Feed.Content>
         </Feed.Event>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Icon, Image } from "semantic-ui-react";
+import { Card, Icon, Image, List } from "semantic-ui-react";
 import LoadingOverlay from "./LoadingOverlay";
 
 class AuthorInfo extends Component {
@@ -7,6 +7,7 @@ class AuthorInfo extends Component {
     super(props);
     this.state = {
       author: null,
+      albums: [],
       loading: false,
       error: ''
     }
@@ -15,13 +16,15 @@ class AuthorInfo extends Component {
   componentDidMount() {
     const { authorId } = this.props;
     if (authorId) {
-      this.fetchAuthor(authorId)
+      this.fetchAuthor(authorId);
+      this.fetchAlbums(authorId);
     }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.authorId !== this.props.authorId && this.props.authorId) {
-      this.fetchAuthor(this.props.authorId)
+      this.fetchAuthor(this.props.authorId);
+      this.fetchAlbums(this.props.authorId)
     }
   }
 
@@ -33,8 +36,16 @@ class AuthorInfo extends Component {
       .catch(e => this.setState({ error: e.message, loading: false, author: null }))
   }
 
+  fetchAlbums(authorId) {
+    this.setState({ loading: true });
+    fetch(`https://jsonplaceholder.typicode.com/users/${authorId}/albums`)
+      .then(response => response.json())
+      .then(albums => this.setState({ albums, loading: false }))
+      .catch(e => this.setState({ loading: false }))
+  }
+
   render() {
-    const { error, author, loading } = this.state;
+    const { error, author, albums, loading } = this.state;
     return (
       <div className='author-fixed'>
         <div className='error'>{error}</div>
@@ -54,7 +65,10 @@ class AuthorInfo extends Component {
           <Card.Content extra>
             <a>
               <Icon name='camera'/>
-              22 Albums {/* TODO Fetch count of albums */}
+              {albums.length} Albums
+              <List>
+                {albums.map(album => <List.Item>{album.title}</List.Item> )}
+              </List>
             </a>
           </Card.Content>
         </Card>

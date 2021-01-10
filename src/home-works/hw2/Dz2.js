@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Dz2.css'
 import Glide from "./Glide";
-import { Checkbox, Container, Radio, Form, Input } from "semantic-ui-react";
+import { Checkbox, Container, Radio, Form, Input, Button } from "semantic-ui-react";
 
 class Dz2 extends Component {
 
@@ -42,14 +42,14 @@ class Dz2 extends Component {
             />
           </Form.Field>
         </Form>
+        <Button onClick={() => this.setState({ visible: false })}>Remove Slider</Button>
         {
           this.state.visible &&
           <Glide options={{autoplay: autoplay ? 2000 : false, type, perView}}>
-
-            <img className="full-with-img" src="https://i.morioh.com/200613/cbd162d1.jpg" alt=""/>
             <img className="full-with-img"
                  src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/top-20-angularjs-developer-tools.jpg"
                  alt=""/>
+            <img className="full-with-img" src="https://i.morioh.com/200613/cbd162d1.jpg" alt=""/>
             <img className="full-with-img"
                  src="https://i1.wp.com/storage.googleapis.com/blog-images-backup/1*wFL3csJ96lQpY0IVT9SE3w.jpeg?ssl=1"
                  alt=""/>

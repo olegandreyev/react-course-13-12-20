@@ -59,6 +59,12 @@ li.user-list-item span {
   top: 20px;
 }
 
+.c-btn {
+  padding: 24px 60px;
+  color: black;
+  border: 1px solid black;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

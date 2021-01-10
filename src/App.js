@@ -8,6 +8,8 @@ import CompositionExample from "./class-works/cw2/compositions-example/Compositi
 import Blog from "./class-works/cw2/life-cycle-example/Blog";
 import AutofocusInput from "./class-works/cw2/refs/AutofocusInput";
 import Dz2 from "./home-works/hw2/Dz2";
+import Counter, { CounterFunction, MouseTrackerExample } from "./class-works/cw3/HooksExample";
+import Website from "./class-works/cw3/UseContextExample";
 
 
 class App extends React.Component {
@@ -15,7 +17,7 @@ class App extends React.Component {
     return (
       <div className='app'>
         {/*<Blog />*/}
-        <Dz2/>
+        <Website />
       </div>
     )
   }

@@ -1,51 +1,62 @@
-import React, { Component } from 'react';
-import { Feed, Icon, Dimmer, Loader } from "semantic-ui-react";
+import React from 'react';
 import PostItem from "./PostItem";
 import LoadingOverlay from "./LoadingOverlay";
+import usePosts from "../hooks/use-posts";
 
+function PostList({ onPostClick }) {
+  const [ posts, loading ] = usePosts();
 
-class PostList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: false,
-      posts: [],
-    };
-  }
-
-  componentDidMount() {
-    this.fetchUsers();
-  }
-
-  fetchUsers() {
-    this.setState({ loading: true });
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(posts => {
-        this.setState({
-          loading: false,
-          posts
-        })
-      })
-      .catch(e => {
-        this.setState({
-          loading: false
-        });
-        alert(e.message)
-      })
-  }
-
-  render() {
-    const { loading, posts } = this.state;
-    const { onPostClick } = this.props;
-    return (
-      <div className='post-list-wrapper'>
-        <LoadingOverlay active={loading} />
-        { posts.map(post => <PostItem onClick={() => onPostClick(post)} post={post} key={post.id} /> )}
-      </div>
-
-    );
-  }
+  return (
+    <div className='post-list-wrapper'>
+      <LoadingOverlay active={loading} />
+      { posts.map(post => <PostItem onClick={() => onPostClick(post)} post={post} key={post.id} /> )}
+    </div>
+  )
 }
 
 export default PostList;
+
+
+// class PostList extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       loading: false,
+//       posts: [],
+//     };
+//   }
+//
+//   componentDidMount() {
+//     this.fetchUsers();
+//   }
+//
+//   fetchUsers() {
+//     this.setState({ loading: true });
+//     fetch('https://jsonplaceholder.typicode.com/posts')
+//       .then(response => response.json())
+//       .then(posts => {
+//         this.setState({
+//           loading: false,
+//           posts
+//         })
+//       })
+//       .catch(e => {
+//         this.setState({
+//           loading: false
+//         });
+//         alert(e.message)
+//       })
+//   }
+//
+//   render() {
+//     const { loading, posts } = this.state;
+//     const { onPostClick } = this.props;
+//     return (
+//       <div className='post-list-wrapper'>
+//         <LoadingOverlay active={loading} />
+//         { posts.map(post => <PostItem onClick={() => onPostClick(post)} post={post} key={post.id} /> )}
+//       </div>
+//
+//     );
+//   }
+// }

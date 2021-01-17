@@ -10,6 +10,9 @@ import AutofocusInput from "./class-works/cw2/refs/AutofocusInput";
 import Dz2 from "./home-works/hw2/Dz2";
 import Counter, { CounterFunction, MouseTrackerExample } from "./class-works/cw3/HooksExample";
 import Website from "./class-works/cw3/UseContextExample";
+import { PriceComponent } from "./home-works/hw3/useDocumentTitle";
+import { OnlineComponent } from "./home-works/hw3/useIsOnline";
+import { LocalStorageExample } from "./home-works/hw3/useLocalStorage";
 
 
 class App extends React.Component {
@@ -17,7 +20,10 @@ class App extends React.Component {
     return (
       <div className='app'>
         {/*<Blog />*/}
-        <Website />
+        {/*<Website />*/}
+        <PriceComponent/>
+        <OnlineComponent/>
+        <LocalStorageExample />
       </div>
     )
   }

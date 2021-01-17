@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export function useIsOnline() {
   const [isOnline, setIsOnline] = useState(null);
@@ -22,3 +22,14 @@ export function useIsOnline() {
 
   return isOnline;
 }
+
+export function OnlineComponent() {
+  const status = useIsOnline();
+
+  return (
+    <div>
+      Status: <span style={{ color: status ? 'green': 'red' }}>{status ? 'Online': 'Offline'}</span>
+    </div>
+  )
+}
+

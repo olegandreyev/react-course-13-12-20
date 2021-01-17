@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 export const useLocalStorage = (key, defaultValue) => {
 
   const [storedValue, setStoredValue] = useState(
     () => {
       try {
-        const item = JSON.parse(localStorage.getItem(key));
+        const item = localStorage.getItem(key);
         return item ? JSON.parse(item) : defaultValue
       } catch (error) {
         console.log(error);
@@ -25,3 +25,17 @@ export const useLocalStorage = (key, defaultValue) => {
   return [storedValue, setValue];
 
 };
+
+
+export function LocalStorageExample() {
+  const [name, setName] = useLocalStorage('name', '');
+  const [options, setOptions] = useLocalStorage('opts', { autoplay: true, value: 10 });
+
+  return (
+    <div>
+      <input type="text" value={name} onChange={e => setName(e.target.value)} />
+      <br/>
+      Autoplay - <input type="checkbox" checked={options.autoplay} onChange={() => setOptions({ ...options, autoplay: !options.autoplay })} />
+    </div>
+  )
+}

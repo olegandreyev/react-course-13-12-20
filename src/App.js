@@ -10,6 +10,8 @@ import AutofocusInput from "./class-works/cw2/refs/AutofocusInput";
 import Dz2 from "./home-works/hw2/Dz2";
 import Counter, { CounterFunction, MouseTrackerExample } from "./class-works/cw3/HooksExample";
 import Website from "./class-works/cw3/UseContextExample";
+import UseCallbackExample from "./class-works/cw4/UseCallbackExample";
+import BlogV2 from "./class-works/cw4/blog-v2/Blog";
 
 
 class App extends React.Component {
@@ -17,7 +19,9 @@ class App extends React.Component {
     return (
       <div className='app'>
         {/*<Blog />*/}
-        <Website />
+        {/*<Website />*/}
+        {/*<UseCallbackExample />*/}
+        <BlogV2 />
       </div>
     )
   }

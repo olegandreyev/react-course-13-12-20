@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Container, Input } from "semantic-ui-react";
-import { addTodo } from "../redux/actions/todo-list";
+import { addTodo } from "../redux/actions/todo";
 
 function AddTodoForm() {
   const dispatch = useDispatch();

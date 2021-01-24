@@ -1,4 +1,4 @@
-import { FILTER_TODO } from "../actions/todo-list";
+import { FILTER_TODO } from "../actions/filter";
 
 
 const initialState = ''; // search filter;

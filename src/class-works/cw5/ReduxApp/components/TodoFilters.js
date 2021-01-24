@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
-import { filterTodo } from "../redux/actions/todo-list";
+import { filterTodo } from "../redux/actions/filter";
 
 function TodoFilters() {
 

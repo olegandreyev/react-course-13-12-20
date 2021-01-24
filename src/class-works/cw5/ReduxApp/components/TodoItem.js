@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch  } from 'react-redux'
 import { Icon, List } from "semantic-ui-react";
-import { completeTodo, removeTodo } from "../redux/actions/todo-list";
+import { completeTodo, removeTodo } from "../redux/actions/todo";
 
 function TodoItem({ todo }) {
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import todoList from './todo-list';
+import todoList from './todo';
 import counter from './counter';
 import filter from './filter';
 

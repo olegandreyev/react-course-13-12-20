@@ -15,6 +15,7 @@ import { OnlineComponent } from "./home-works/hw3/useIsOnline";
 import { LocalStorageExample } from "./home-works/hw3/useLocalStorage";
 import UseCallbackExample from "./class-works/cw4/UseCallbackExample";
 import BlogV2 from "./class-works/cw4/blog-v2/Blog";
+import TodoApp from "./class-works/cw5/ReduxApp/TodoApp";
 
 class App extends React.Component {
   render() {
@@ -26,7 +27,8 @@ class App extends React.Component {
         {/*<PriceComponent/>*/}
         {/*<OnlineComponent/>*/}
         {/*<LocalStorageExample />*/}
-        <BlogV2 />
+        {/*<BlogV2 />*/}
+        <TodoApp />
       </div>
     )
   }

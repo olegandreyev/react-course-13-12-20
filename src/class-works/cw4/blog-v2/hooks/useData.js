@@ -18,7 +18,6 @@ export default function useData(path, initialValue) {
         setIsLoading(false);
         setError(err.response);
       })
-
   }, [path]);
 
   return [data, isLoading, error];

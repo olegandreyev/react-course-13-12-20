@@ -27,8 +27,8 @@ class App extends React.Component {
         {/*<PriceComponent/>*/}
         {/*<OnlineComponent/>*/}
         {/*<LocalStorageExample />*/}
-        {/*<BlogV2 />*/}
-        <TodoApp />
+        <BlogV2 />
+        {/*<TodoApp />*/}
       </div>
     )
   }

@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import './CardIcon.css';
 import { Icon } from "semantic-ui-react";
 import { useSelector } from "react-redux";
+import { getTotalCount, getTotalPrice } from "../redux/selectors/cart";
 
 function CartIcon() {
-  const cart = useSelector(state => state.cart);
-  const count = cart.reduce((sum, product) => {
-    return sum + (1 * product.count)
-  }, 0);
+  const count = useSelector(getTotalCount);
+  const totalAmount = useSelector(getTotalPrice);
+
   return (
     <div className='cart-icon'>
       <Icon name='cart' />
       {count > 0 && <span className='badge'>{count}</span> }
+      {totalAmount > 0 && <span>Total: {totalAmount}$</span> }
     </div>
   );
 }

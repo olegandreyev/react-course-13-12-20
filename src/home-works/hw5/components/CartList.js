@@ -9,7 +9,7 @@ function CartList({ cartProducts }) {
       {cartProducts.map(product => (
         <CartListItem key={product.id} product={product} />
       ))}
-      <CartSummary cartProducts={cartProducts} />
+      <CartSummary />
     </List>
   )
 }

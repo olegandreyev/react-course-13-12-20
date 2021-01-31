@@ -1,11 +1,11 @@
-import React from 'react';
+import React  from 'react';
+import { useSelector } from "react-redux";
 import { Button, Icon, Label, List } from "semantic-ui-react";
+import { getTotalPrice } from "../redux/selectors/cart";
 
-function CartSummary({ cartProducts }) {
+function CartSummary() {
 
-  const totalPrice = cartProducts.reduce((sum, product) => {
-    return sum + (product.price * product.count)
-  }, 0);
+  const totalPrice = useSelector(getTotalPrice);
 
   return (
     <List.Item className='cart-summary-row'>

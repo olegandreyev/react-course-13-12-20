@@ -17,7 +17,7 @@ import UseCallbackExample from "./class-works/cw4/UseCallbackExample";
 import BlogV2 from "./home-works/hw4/blog-v2/Blog";
 import TodoApp from "./class-works/cw5/ReduxApp/TodoApp";
 import DZ5 from "./home-works/hw5/App";
-import GistsApp from "./home-works/hw6/GistsApp";
+import RedditApp from "./class-works/cw6/RedditApp/RedditApp";
 
 class App extends React.Component {
   render() {
@@ -31,8 +31,8 @@ class App extends React.Component {
         {/*<LocalStorageExample />*/}
         {/*<BlogV2 />*/}
         {/*<TodoApp />*/}
-        <DZ5 />
-        {/*<GistsApp />*/}
+        {/*<DZ5 />*/}
+        <RedditApp />
       </div>
     )
   }

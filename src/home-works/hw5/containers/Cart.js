@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 function Cart() {
   const products = useSelector(state => state.products);
   const cart = useSelector(state => state.cart);
-  const productsInCart = cart.map(({ id, count }) => {
-    const { img, price, title } = products.find(product => product.id === id);
+  const productsInCart = cart.map(cartItem => {
+    const { id, img, price, title } = products.find(product => product.id === cartItem.id);
     return {
-      id, count, img, price, title
+      id, count: cartItem.count, img, price, title
     }
   });
 

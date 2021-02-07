@@ -31,8 +31,8 @@ class App extends React.Component {
         {/*<LocalStorageExample />*/}
         {/*<BlogV2 />*/}
         {/*<TodoApp />*/}
-        {/*<DZ5 />*/}
-        <RedditApp />
+        <DZ5 />
+        {/*<RedditApp />*/}
       </div>
     )
   }

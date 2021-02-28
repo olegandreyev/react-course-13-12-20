@@ -5,7 +5,6 @@ const userRouter = Router();
 
 let users = [];
 
-
 userRouter.get('/', (req, res) => {
   res.send(users);
 });

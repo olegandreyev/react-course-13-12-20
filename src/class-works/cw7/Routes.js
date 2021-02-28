@@ -1,10 +1,11 @@
 import { Container, Header, Menu } from "semantic-ui-react";
 import { BrowserRouter as Router, NavLink, Route, Switch } from "react-router-dom";
 import React from "react";
-import NotFoundPage from "../hw4/blog-v2/containers/404";
 import Products from "./containers/Products";
 import Cart from "./containers/Cart";
 import CartIcon from "./components/CartIcon";
+import Register from "./containers/Register";
+import NotFoundPage from "./containers/404";
 
 export default function Blog() {
   return (
@@ -24,6 +25,7 @@ export default function Blog() {
         </Menu>
         <Switch>
           <Route path='/' exact component={Products} />
+          <Route path='/signup' exact component={Register} />
           <Route path='/cart' component={Cart} />
           <Route path='*' component={NotFoundPage} />
         </Switch>

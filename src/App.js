@@ -18,6 +18,7 @@ import BlogV2 from "./home-works/hw4/blog-v2/Blog";
 import TodoApp from "./class-works/cw5/ReduxApp/TodoApp";
 import DZ5 from "./home-works/hw5/App";
 import RedditApp from "./class-works/cw6/RedditApp/RedditApp";
+import CW7 from "./class-works/cw7/App";
 
 class App extends React.Component {
   render() {
@@ -31,8 +32,9 @@ class App extends React.Component {
         {/*<LocalStorageExample />*/}
         {/*<BlogV2 />*/}
         {/*<TodoApp />*/}
-        <DZ5 />
+        {/*<DZ5 />*/}
         {/*<RedditApp />*/}
+        {<CW7 />}
       </div>
     )
   }

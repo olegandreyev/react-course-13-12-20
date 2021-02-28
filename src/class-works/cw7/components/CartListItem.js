@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Icon, Image, List } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
-import { addProductToCard, removeProductFormCart } from "../redux/actions/cart";
+import { addProductToCard, removeProductFormCart } from "../redux/slices/cart";
 
 function CartListItem({ product }) {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function CartListItem({ product }) {
         <Button icon onClick={addMoreProducts}><Icon name='plus'/></Button>
         <Button icon onClick={removeProducts}><Icon name='minus'/></Button>
       </List.Content>
-      <Image avatar src={product.img}/>
+      <Image avatar src={product.image}/>
       <List.Content>
         {product.title} - <span className='muted'>{product.price}$ x {product.count} = {product.price * product.count}$</span>
       </List.Content>

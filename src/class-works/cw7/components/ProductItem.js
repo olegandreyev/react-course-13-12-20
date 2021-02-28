@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Card, Image } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
-import { addProductToCard } from "../redux/actions/cart";
+import { addProductToCard } from "../redux/slices/cart";
 
 
 function ProductItem({product}) {
@@ -11,7 +11,7 @@ function ProductItem({product}) {
       <Card.Content>
         <Image
           style={{ marginBottom: 20 }}
-          src={product.img}
+          src={product.image}
         />
         <Card.Header>{product.title}</Card.Header>
         <Card.Meta>{product.type}</Card.Meta>

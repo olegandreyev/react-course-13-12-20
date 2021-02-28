@@ -1,8 +1,14 @@
-import { createStore } from 'redux';
-import rootReducer from './reducers';
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import cartReducer from "./slices/cart";
+import productsReducer from "./slices/products";
 
 export default () => {
-  return createStore(rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
-};
+  return configureStore({
+    reducer: {
+      cart: cartReducer,
+      products: productsReducer,
+    },
+    middleware: [...getDefaultMiddleware()],
+    devTools: true
+  })
+}

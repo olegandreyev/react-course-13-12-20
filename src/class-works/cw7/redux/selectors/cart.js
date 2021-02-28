@@ -1,7 +1,8 @@
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
+import { getProducts } from './products';
 
 export const getProductsInCart = createSelector(
-  state => state.products,
+  getProducts,
   state => state.cart,
   (products, cart) => {
     const result = cart.map(cartItem => {

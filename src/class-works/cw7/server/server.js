@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 require('express-async-errors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -13,6 +14,8 @@ const API_PORT = 3001;
 
 const jsonParser = bodyParser.json();
 const app = express();
+
+app.use(express.static('public'));
 
 app.use(session({
   name : 'app.sid',
@@ -34,6 +37,10 @@ app.get('/', (req, res) => {
 
 app.use('/users', userRouter);
 app.use('/auth', authRouter);
+
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname + '/public/index.html'));
+});
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);

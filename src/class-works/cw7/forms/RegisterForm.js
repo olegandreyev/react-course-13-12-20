@@ -5,15 +5,19 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 const schema = yup.object().shape({
-  email: yup.string().email('EMAIL FIELD').required('FILL THIS SHIT!'),
+  email: yup.string().email().required(),
   firstName: yup.string().required(),
   lastName: yup.string().required(),
   age: yup.number().positive().integer().min(15).max(99).required(),
+  password: yup.string().min(5).required(),
+  repeatPassword: yup.string().oneOf([yup.ref('password'), null])
 });
 
 function RegisterForm() {
   const { handleSubmit, errors, control, reset } = useForm({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
+    mode: 'onBlur',
+    reValidateMode: 'onChange'
   });
   const onSubmit = data => {
     console.log(data, 'TODO SEND FORM TO SERVER');
@@ -32,6 +36,30 @@ function RegisterForm() {
             defaultValue=''
           />
           {errors.email && <Message color='red'>{errors.email.message}</Message> }
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="">Password</label>
+          <Controller
+            type='password'
+            name='password'
+            control={control}
+            as={Input}
+            placeholder='*****'
+            defaultValue=''
+          />
+          {errors.password && <Message color='red'>{errors.password.message}</Message> }
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="">Repeat Password</label>
+          <Controller
+            type='password'
+            name='repeatPassword'
+            control={control}
+            as={Input}
+            placeholder='*****'
+            defaultValue=''
+          />
+          {errors.repeatPassword && <Message color='red'>{errors.repeatPassword.message}</Message> }
         </Form.Field>
         <Form.Field>
           <label htmlFor="">First Name</label>

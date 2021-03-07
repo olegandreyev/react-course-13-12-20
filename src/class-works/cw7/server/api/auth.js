@@ -18,4 +18,9 @@ authRouter.get('/me', (req, res) => {
   res.send({ user: req.session.user })
 });
 
+authRouter.post('/logout', async (req, res) => {
+  req.session.destroy();
+  res.send({ user: null })
+});
+
 module.exports = authRouter;

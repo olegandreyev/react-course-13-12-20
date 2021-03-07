@@ -2,11 +2,14 @@ import React from 'react';
 import { Menu } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import CartIcon from "./CartIcon";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCurrentAuthState } from "../redux/selectors/auth";
+import { logout } from "../redux/slices/auth";
 
 function Navbar(props) {
+  const dispatch = useDispatch();
   const { user } = useSelector(getCurrentAuthState);
+  const onClickLogout = () => dispatch(logout());
   return (
     <Menu>
       {!user &&
@@ -24,6 +27,14 @@ function Navbar(props) {
       <NavLink to='/cart' className='item' activeClassName='active-nav'>
         <CartIcon/>
       </NavLink>
+      }
+      {user &&
+      <Menu.Menu position='right'>
+        <Menu.Item
+          name='logout'
+          onClick={onClickLogout}
+        />
+      </Menu.Menu>
       }
     </Menu>
   );

@@ -7,6 +7,12 @@ const login = createAsyncThunk('auth/login',
     return response.data
   });
 
+const logout = createAsyncThunk('auth/logout',
+  async () => {
+    const response = await apiClient.post('/auth/logout');
+    return response.data
+  });
+
 const fetchSession = createAsyncThunk('auth/fetchSession',
   async () => {
     const response = await apiClient.get('/auth/me');
@@ -32,9 +38,12 @@ const authSlice = createSlice({
     [fetchSession.fulfilled]: (state, action) => {
       state.hasLoaded = true;
       state.user = action.payload.user;
+    },
+    [logout.fulfilled]: (state, action) => {
+      state.user = null
     }
   }
 });
 
 export default authSlice.reducer;
-export { login, fetchSession };
+export { login, fetchSession, logout };

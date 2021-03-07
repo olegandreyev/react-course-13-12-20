@@ -1,4 +1,4 @@
-import { Container, Header, Menu } from "semantic-ui-react";
+import { Container, Header } from "semantic-ui-react";
 import { BrowserRouter as Router, NavLink, Route, Switch } from "react-router-dom";
 import React, { useEffect } from "react";
 import Products from "./containers/Products";
@@ -13,6 +13,7 @@ import Home from "./containers/Home";
 import { getCurrentAuthState } from "./redux/selectors/auth";
 import DimmerLoader from "../../home-works/hw4/blog-v2/components/DimmerLoader";
 import { fetchSession } from "./redux/slices/auth";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function Blog() {
   const dispatch = useDispatch();
@@ -32,12 +33,24 @@ export default function Blog() {
         </Header>
         <Navbar />
         <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/signup' exact component={Register} />
-          <Route path='/signin' exact component={Login} />
-          <Route path='/products' exact component={Products} />
-          <Route path='/cart' component={Cart} />
-          <Route path='*' component={NotFoundPage} />
+          <Route path='/' exact>
+            <Home />
+          </Route>
+          <Route path='/signup' exact>
+            <Register />
+          </Route>
+          <Route path='/signin' exact >
+            <Login />
+          </Route>
+          <ProtectedRoute path='/products' exact>
+            <Products />
+          </ProtectedRoute>
+          <ProtectedRoute path='/cart' exact>
+            <Cart />
+          </ProtectedRoute>
+          <Route path='*'>
+            <NotFoundPage />
+          </Route>
         </Switch>
       </Router>
     </Container>

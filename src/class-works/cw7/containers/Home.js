@@ -9,7 +9,7 @@ function Home() {
   return (
     <Container>
       <h1>
-        {user && <span>Welcome {user}, please visit <Link to='/products'>store</Link> to buy something</span>}
+        {user && <span>Welcome {user.firstName}, please visit <Link to='/products'>store</Link> to buy something</span>}
         {!user && <span>Hello, please <Link to='/signin'>login</Link> to see products</span>}
       </h1>
     </Container>

@@ -1,7 +1,9 @@
 const express = require('express');
+require('express-async-errors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cors = require('cors');
+require('./connect-db');
 
 // API routers
 const userRouter = require('./api/users');
@@ -35,7 +37,7 @@ app.use('/auth', authRouter);
 
 app.use(function(err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send({ error: err.message });
 });
 
 app.listen(API_PORT, () => {

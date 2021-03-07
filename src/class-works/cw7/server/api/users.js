@@ -1,46 +1,28 @@
-
+const User = require('../models/UserModel');
 const Router = require('express').Router;
 
 const userRouter = Router();
 
-let users = [];
 
-userRouter.get('/', (req, res) => {
+userRouter.get('/', async (req, res) => {
+  const users = await User.find({});
   res.send(users);
 });
 
-userRouter.post('/signup', (req, res) => {
-  const newUser = req.body;
-  newUser.email = newUser.email.toLowerCase();
-  newUser.id = Date.now();
-  const isUserExists = users.some(user => user.email === newUser.email);
-  if (isUserExists) {
-    return res.status(400).send({ success: false, message: 'User already exists!' })
-  }
-  users.push(newUser);
-  res.send({ success: true })
+userRouter.post('/signup', async (req, res) => {
+  const user = new User(req.body);
+  const result = await user.save();
+  res.send(result);
 });
 
-userRouter.delete('/:id', (req, res) => {
-  const userId = req.params.id;
-  const updatedArray = users.filter(u => u.id !== +userId);
-  const deletedCount = users.length - updatedArray.length;
-  users = updatedArray.slice();
-  res.send({ deletedCount })
+userRouter.delete('/:id', async (req, res) => {
+  const result = await User.findByIdAndRemove(req.params.id);
+  res.send(result);
 });
 
-userRouter.put('/:id', (req, res) => {
-  const userId = +req.params.id;
-  let count = 0;
-  const updatedArray = users.map(u => {
-    if (u.id === userId) {
-      count++;
-      return Object.assign({}, u, req.body)
-    }
-    return u;
-  });
-  users = updatedArray.slice();
-  res.send({ updatedCount: count })
+userRouter.put('/:id', async (req, res) => {
+  const result = await User.findByIdAndUpdate(req.body);
+  res.send(result);
 });
 
 module.exports = userRouter;

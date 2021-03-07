@@ -1,15 +1,19 @@
 const { Router } = require('express');
+const User = require('../models/UserModel');
 
 const authRouter = Router();
 
-const EMAIL = 'test@gmail.com';
-const PASSWORD = '12345';
-
-authRouter.post('/', (req, res) => {
+authRouter.post('/', async (req, res) => {
   const { email, password } = req.body;
-  if (EMAIL === email && password === PASSWORD) {
-    req.session.user = email;
-    return res.send({ success: true, user: email })
+  const user = await User.findOne({ email }, '+password');
+  if (user) {
+    const result = await user.signIn(password);
+    if (result) {
+      req.session.user = user;
+    }
+    const userObject = user.toObject();
+    delete userObject.password;
+    return res.send({ success: result, user: result ? userObject : null})
   }
   res.send({ success: false, user: null })
 });

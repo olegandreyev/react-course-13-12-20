@@ -39,7 +39,7 @@ export default function Blog() {
           <Route path='/signup' exact>
             <Register />
           </Route>
-          <Route path='/signin' exact >
+          <Route path='/signin' exact>
             <Login />
           </Route>
           <ProtectedRoute path='/products' exact>

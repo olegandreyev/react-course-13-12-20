@@ -33,4 +33,10 @@ UserSchema.methods.signIn = function(password) {
   return bcrypt.compare(password, this.password);
 };
 
+UserSchema.methods.clientResponse = function () {
+  const result = this.toObject();
+  delete result.password;
+  return result;
+};
+
 module.exports = mongoose.model('user', UserSchema);

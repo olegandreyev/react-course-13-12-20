@@ -11,9 +11,7 @@ authRouter.post('/', async (req, res) => {
     if (result) {
       req.session.user = user;
     }
-    const userObject = user.toObject();
-    delete userObject.password;
-    return res.send({ success: result, user: result ? userObject : null})
+    return res.send({ success: result, user: result ? user.clientResponse() : null})
   }
   res.send({ success: false, user: null })
 });

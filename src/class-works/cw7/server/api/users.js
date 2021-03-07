@@ -9,10 +9,15 @@ userRouter.get('/', async (req, res) => {
   res.send(users);
 });
 
+userRouter.get('/is-exist', async (req, res) => {
+  const isExist = await User.exists({ email: req.query.email });
+  res.send(isExist);
+});
+
 userRouter.post('/signup', async (req, res) => {
   const user = new User(req.body);
   const result = await user.save();
-  res.send(result);
+  res.send(result.clientResponse());
 });
 
 userRouter.delete('/:id', async (req, res) => {

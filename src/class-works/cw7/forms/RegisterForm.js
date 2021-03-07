@@ -1,24 +1,44 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import apiClient from "../api-client";
 import { useForm, Controller } from "react-hook-form";
 import { Container, Input, Form, Button, Message } from "semantic-ui-react";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
+  email: yup.string().email().test(
+    'emailUniqueTest',
+    'This email has already been taken',
+    async value => {
+      if (!value) return true;
+      const isExist = await apiClient.get(`/users/is-exist?email=${value.toLowerCase()}`).then(response => response.data);
+      return !isExist;
+    }
+  ).required(),
   firstName: yup.string().required(),
   lastName: yup.string().required(),
+  password: yup.string().min(5).required(),
+  repeatPassword: yup.string().oneOf([yup.ref('password'), null]),
   age: yup.number().positive().integer().min(15).max(99).required(),
 });
 
 function RegisterForm() {
+  const history = useHistory();
   const { handleSubmit, errors, control, reset } = useForm({
     resolver: yupResolver(schema),
     mode: 'onBlur',
     reValidateMode: 'onChange'
   });
   const onSubmit = data => {
-    console.log(data, 'TODO SEND FORM TO SERVER');
+    return apiClient.post('/users/signup', data).then(result => {
+      if (result.data) {
+        alert('Account has been created, pleaase use your credentials to login');
+        history.push('/signin')
+      }
+    }).catch(e => {
+      alert(e.response.data.error)
+    })
   };
 
   return (
@@ -34,6 +54,30 @@ function RegisterForm() {
             defaultValue=''
           />
           {errors.email && <Message color='red'>{errors.email.message}</Message> }
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="">Password</label>
+          <Controller
+            name='password'
+            type='password'
+            control={control}
+            as={Input}
+            placeholder='******'
+            defaultValue=''
+          />
+          {errors.password && <Message color='red'>{errors.password.message}</Message> }
+        </Form.Field>
+        <Form.Field>
+          <label htmlFor="">Repeat Password</label>
+          <Controller
+            type='password'
+            name='repeatPassword'
+            control={control}
+            as={Input}
+            placeholder='******'
+            defaultValue=''
+          />
+          {errors.repeatPassword && <Message color='red'>{errors.repeatPassword.message}</Message> }
         </Form.Field>
         <Form.Field>
           <label htmlFor="">First Name</label>

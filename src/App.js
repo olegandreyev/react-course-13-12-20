@@ -17,6 +17,7 @@ import UseCallbackExample from "./class-works/cw4/UseCallbackExample";
 import BlogV2 from "./home-works/hw4/blog-v2/Blog";
 import TodoApp from "./class-works/cw5/ReduxApp/TodoApp";
 import DZ5 from "./home-works/hw5/App";
+import GistsApp from "./home-works/hw6/GistsApp";
 import RedditApp from "./class-works/cw6/RedditApp/RedditApp";
 import CW7 from "./class-works/cw7/App";
 
@@ -34,7 +35,8 @@ class App extends React.Component {
         {/*<TodoApp />*/}
         {/*<DZ5 />*/}
         {/*<RedditApp />*/}
-        {<CW7 />}
+        <GistsApp />
+        {/*{<CW7 />}*/}
       </div>
     )
   }
